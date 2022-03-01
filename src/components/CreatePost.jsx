@@ -2,10 +2,10 @@ import React from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
 
-//custom iports
+//custom imports
 
 
-function CreatePost({user, setPosts, posts}) {
+function CreatePost({user, handleAddPosts}) {
     const [content, setContent] = useState('');
     const [image, setImage] = useState(null);
     const imageInputRef = useRef()
@@ -14,7 +14,7 @@ function CreatePost({user, setPosts, posts}) {
         event.preventDefault();
         // const post = { content: content, image: image, user: user}; //equivalent
         const post = { content, image, user}; //new posts
-        setPosts([...posts, post]); //add new post to the existing
+        handleAddPosts(post); //add new post to the existing
 
         //clear the submit to be ready for the next input
         setContent(''); //input value ={content}
