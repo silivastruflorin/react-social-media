@@ -1,5 +1,5 @@
 //React imports
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 //custom imports 
 import Header from './components/Header';
@@ -15,10 +15,6 @@ function App() {
                                     }) 
 
   const [posts, setPosts] = useState([])
-
-  const handleAddPosts = useCallback((newPost)=>{
-      setPosts([newPost,...posts])
-  },[posts])   //creates the arrow function and executes it only when posts array changes
   
   useEffect(()=>{
     document.title = user.username ? `${user.username} 's feed` : 'Please login'
@@ -30,7 +26,7 @@ function App() {
     return (
         <>
          <Header currentUser={user} setUser={setUser}/>
-         <CreatePost currentUser={user.username} handleAddPosts={handleAddPosts}/>
+         <CreatePost currentUser={user.username}  setPosts={setPosts} posts={posts}/>
          <PostList posts={posts}/>
         </>
        
